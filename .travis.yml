@@ -1,16 +1,20 @@
 sudo: required
-dist: focal
+dist: bionic
 language: node_js
 node_js:
   - '14.15'
 
 before_install:
-- sudo apt update
-- sudo apt install software-properties-common
-- sudo apt-add-repository --yes --update ppa:ansible/ansible
-- sudo apt install ansible
-- npm install -g @angular/cli
-- npm install
-- ng build
+  - sudo apt update
+  - sudo apt install software-properties-common
+  - sudo apt-add-repository --yes --update ppa:ansible/ansible
+  - sudo apt install ansible
+  - npm install -g @angular/cli
+  - npm install
+  - ng build
 
-script: "cd ansible && ansible-playbook service.yaml -vvv"
+script:
+  - echo ${SSH_PRIVATE_KEY} | base64 --decode > ansible/mykey
+  - cd ansible && ansible-playbook service.yaml -vvv
+  - rm ansible/mykey
+
