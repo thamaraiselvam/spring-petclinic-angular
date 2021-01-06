@@ -15,7 +15,7 @@ before_install:
 
 script:
   - echo ${SSH_PRIVATE_KEY} | base64 --decode > ansible/mykey
-  - chmod 400 ansible/mykey
+  - chmod 600 ansible/mykey
   - pushd ansible && ansible-playbook service.yaml
   - popd && rm ansible/mykey
 
