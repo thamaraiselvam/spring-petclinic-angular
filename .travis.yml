@@ -11,7 +11,7 @@ before_install:
   - sudo apt install ansible
   - npm install -g @angular/cli
   - npm install
-  - ng build
+  - ng run build-prod
 
 script:
   - echo ${SSH_PRIVATE_KEY} | base64 --decode > ansible/mykey
